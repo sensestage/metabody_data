@@ -1,4 +1,4 @@
-~influxes = 8.collect{ |it| Influx.new( [ \xm, \ym, \zm, \xs, \ys, \zs ], [\p1,\p2,\p3,\p4,\p5,\p6,\p7,\p8] ) };
+~influxes = 7.collect{ |it| Influx.new( [ \xm, \ym, \zm, \xs, \ys, \zs ], [\p1,\p2,\p3,\p4,\p5,\p6,\p7,\p8] ) };
 
 (
 ~accs.do{ |it,i|
@@ -11,7 +11,7 @@
 };
 );
 
-
+//// ------------------- testing code ------
 
 ~influxes[0].attachMapped( Ndef( \rlpf ) );
 

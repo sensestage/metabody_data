@@ -1,6 +1,6 @@
-MBAccelero {
-	var <>acceleroSpec;
-	var <>motionSpec;
+MBAnalog {
+	var <>inputSpec;
+	var <>activitySpec;
 
 	var <network;
 
@@ -9,26 +9,26 @@ MBAccelero {
 
 	var <>activityLevels;
 
-	*new{
-		^super.new.init;
+	*new{ |nchan|
+		^super.new.init( nchan );
 	}
 
 	initSpecs{
-		acceleroSpec = [ 0.46, 0.54 ].asSpec;
-		motionSpec = [ 0.0001, 0.15, \exponential ].asSpec;
+		inputSpec = [ 0.46, 0.54 ].asSpec;
+		activitySpec = [ 0.0001, 0.15, \exponential ].asSpec;
 	}
 
-	init{
+	init{ |nchan|
 		activityLevels = [0.4, 0.6];
 		this.initSpecs;
 		network = SWDataNetwork.new;
 		[
-			[1,\accelero],[2,\mean], [3,\stddev],
-			[11, \accMapped], [ 12, \meanMapped], [13,\stdMapped],
+			[1, \input],[2,\mean], [3,\stddev],
+			[11, \inputMapped], [ 12, \meanMapped], [13,\stdMapped],
 			[21, \lowActivity], [22, \fadeOutActivity],
 			[23, \fadeInActivity], [24, \highActivity]
 		].do{ |it|
-			network.addExpected( it[0], it[1], 3 );
+			network.addExpected( it[0], it[1], nchan );
 		};
 		this.addHooks;
 	}
@@ -37,7 +37,7 @@ MBAccelero {
 		network.addHook( 1, {
 			network.nodes[1].action = MFunc.new;
 			network.nodes[1].action.add( \map, { |data|
-				network.setData( 11, acceleroSpec.unmap( data ) );
+				network.setData( 11, inputSpec.unmap( data ) );
 			});
 			network.nodes[1].createBus(Server.default);
 			meannode = MeanNode.new( 2, network, network.nodes[1].bus, Server.default );
@@ -50,13 +50,13 @@ MBAccelero {
 		network.addHook( 2, {
 			network.nodes[2].action = MFunc.new;
 			network.nodes[2].action.add( \map, { |data|
-				network.setData( 12, acceleroSpec.unmap( data ) );
+				network.setData( 12, inputSpec.unmap( data ) );
 			});
 		});
 		network.addHook( 3, {
 			network.nodes[3].action = MFunc.new;
 			network.nodes[3].action.add( \map, { |data|
-				network.setData( 13, motionSpec.unmap( data ) );
+				network.setData( 13, activitySpec.unmap( data ) );
 			});
 		});
 		network.addHook( 13, {
@@ -90,6 +90,8 @@ MBAccelero {
 		network.setData( 1, data );
 	}
 
+	// convenience methods
+
 	directUni{
 		^network.nodes[11].data;
 	}
@@ -103,7 +105,7 @@ MBAccelero {
 	}
 
 
-// --- kind of standard methods:
+	// --- kind of standard methods:
 	addAction{ |node,label,action|
 		if ( node.isKindOf( Symbol ) ){
 			network.at( node ).action.addFirst( label, action );

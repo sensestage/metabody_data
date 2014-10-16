@@ -26,9 +26,12 @@ c.put( 1, 1 ); d.currentCue = c; d.setCue; // mid front two
 
 c.put( 2, 1 ); d.currentCue = c; d.setCue; // right corner
 
-c.put( 3, 1 ); d.currentCue = c; d.setCue; // middle
+c.put( 3, 0.75 ); d.currentCue = c; d.setCue; // middle
 
 c.put( 5, 1 ); d.currentCue = c; d.setCue; // two back mid
 
 c = DMXCue.new; d.currentCue = c; d.setCue; // blackout
 
+c.put( 3, 0.75 ); c.put( 5, 0.75 ); d.currentCue = c; d.setCue; // mid front two
+
+c.put( 5, 0 ); d.currentCue = c; d.setCue; // mid front two

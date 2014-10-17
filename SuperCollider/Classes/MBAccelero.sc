@@ -26,7 +26,8 @@ MBAccelero {
 			[1,\accelero],[2,\mean], [3,\stddev],
 			[11, \accMapped], [ 12, \meanMapped], [13,\stdMapped],
 			[21, \lowActivity], [22, \fadeOutActivity],
-			[23, \fadeInActivity], [24, \highActivity]
+			[23, \fadeInActivity], [24, \highActivity],
+			[31, \angleAccelero ], [32, \angleMean], [33, \angleStd]
 		].do{ |it|
 			network.addExpected( it[0], it[1], 3 );
 		};
@@ -38,6 +39,13 @@ MBAccelero {
 			network.nodes[1].action = MFunc.new;
 			network.nodes[1].action.add( \map, { |data|
 				network.setData( 11, acceleroSpec.unmap( data ) );
+			});
+			network.nodes[1].action.add( \angle, { |data|
+				network.setData( 31, [
+					atan2( data[0], ( pow( data[1], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( data[1], ( pow( data[0], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( ( pow( data[0], 2) + pow( data[1], 2 ) ).sqrt, data[2] ),
+				]*180/pi );
 			});
 			network.nodes[1].createBus(Server.default);
 			meannode = MeanNode.new( 2, network, network.nodes[1].bus, Server.default );
@@ -52,12 +60,27 @@ MBAccelero {
 			network.nodes[2].action.add( \map, { |data|
 				network.setData( 12, acceleroSpec.unmap( data ) );
 			});
+			network.nodes[2].action.add( \angle, { |data|
+				network.setData( 32, [
+					atan2( data[0], ( pow( data[1], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( data[1], ( pow( data[0], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( ( pow( data[0], 2) + pow( data[1], 2 ) ).sqrt, data[2] ),
+				]*180/pi );
+			});
 		});
 		network.addHook( 3, {
 			network.nodes[3].action = MFunc.new;
 			network.nodes[3].action.add( \map, { |data|
 				network.setData( 13, motionSpec.unmap( data ) );
 			});
+			network.nodes[3].action.add( \angle, { |data|
+				network.setData( 33, [
+					atan2( data[0], ( pow( data[1], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( data[1], ( pow( data[0], 2) + pow( data[2], 2 ) ).sqrt ),
+					atan2( ( pow( data[0], 2) + pow( data[1], 2 ) ).sqrt, data[2] ),
+				]*180/pi );
+			});
+
 		});
 		network.addHook( 13, {
 			network.nodes[13].action = MFunc.new;
@@ -79,7 +102,7 @@ MBAccelero {
 				});
 			});
 		});
-		[11, 12, 21, 22, 23, 24].do{ |id|
+		[11, 12, 21,22,23,24, 31,32,33].do{ |id|
 			network.addHook( id, {
 				network.nodes[id].action = MFunc.new;
 			});

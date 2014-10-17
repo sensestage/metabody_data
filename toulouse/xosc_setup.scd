@@ -9,6 +9,8 @@
 ~xosc.sendMsg( "/XOSC/subscribe/tag", "/minibee/info" );
 ~xosc.sendMsg( "/XOSC/subscribe/tag", "/minibee/data" );
 
+~xosc.sendMsg( "/XOSC/subscribe/tag", "/activitySensitiveAll" );
+
 
 // connection to EyeCon
 ~eyecon = MBEyeCon.new;
@@ -89,6 +91,15 @@ OSCdef( \minibee2accelero, { |msg|
 	);
 	it.addAction( \stdMapped, \forward,
 		{ |data| ~xosc.sendMsg( *(["/minibee/accelero/stddev/scaled", i+1 ] ++ data ) ); }
+	);
+	it.addAction( \angleAccelero, \forward,
+		{ |data| ~xosc.sendMsg( *(["/minibee/accelero/angle", i+1 ] ++ data ) ); }
+	);
+	it.addAction( \angleMean, \forward,
+		{ |data| ~xosc.sendMsg( *(["/minibee/accelero/mean/angle", i+1 ] ++ data ) ); }
+	);
+	it.addAction( \angleStd, \forward,
+		{ |data| ~xosc.sendMsg( *(["/minibee/accelero/stddev/angle", i+1 ] ++ data ) ); }
 	);
 };
 );

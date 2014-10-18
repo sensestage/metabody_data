@@ -13,13 +13,19 @@ MBEyeCon {
 			[1,\activityNormal1],
 			[11,\activityNormal2],
 			[21,\activityNormalAll],
+			[31,\activityNormal3],
+			[41,\activityNormal4],
 			[2,\activitySensitive1],
 			[12,\activitySensitive2],
+			[22,\activitySensitiveAll],
+			[32,\activitySensitive3],
+			[42,\activitySensitive4],
 			[3,\centerX1],
 			[13,\centerX2],
 			[23,\centerXAll],
 			[6,\height1],
 			[16,\height2],
+			[26,\heightAll],
 			[7,\width1],
 			[17,\width2],
 			[27,\widthAll]
@@ -31,7 +37,7 @@ MBEyeCon {
 	}
 
 	addHooks{
-		[1,11,21, 2,12, 3,13,23, 6,16, 7,17,27].do{ |id|
+		[1,11,21,31,41, 2,12,22,32,42, 3,13,23, 6,16,26, 7,17,27].do{ |id|
 			network.addHook( id, {
 				network.nodes[id].action = MFunc.new;
 			});
@@ -43,13 +49,19 @@ MBEyeCon {
 			"/activityNormal1",
 			"/activityNormal2",
 			"/activityNormalAll",
+			"/activityNormal3",
+			"/activityNormal4",
 			"/activitySensitive1",
 			"/activitySensitive2",
+			"/activitySensitiveAll",
+			"/activitySensitive3",
+			"/activitySensitive4",
 			"/centerX1",
 			"/centerX2",
 			"/centerXAll",
 			"/height1",
 			"/height2",
+			"/heightAll",
 			"/width1",
 			"/width2",
 			"/widthAll"
@@ -67,6 +79,12 @@ MBEyeCon {
 			OSCFunc.new( { |data|
 				network.setData( 21, [data[1]] );
 			}, "/activityNormalAll" ),
+			OSCFunc.new( { |data|
+				network.setData( 31, [data[1]] );
+			}, "/activityNormal3" ),
+			OSCFunc.new( { |data|
+				network.setData( 41, [data[1]] );
+			}, "/activityNormal4" ),
 
 			OSCFunc.new( { |data|
 				network.setData( 2, [data[1]] );
@@ -74,6 +92,15 @@ MBEyeCon {
 			OSCFunc.new( { |data|
 				network.setData( 12, [data[1]] );
 			},"/activitySensitive2" ),
+			OSCFunc.new( { |data|
+				network.setData( 22, [data[1]] );
+			},"/activitySensitiveAll" ),
+			OSCFunc.new( { |data|
+				network.setData( 32, [data[1]] );
+			},"/activitySensitive3" ),
+			OSCFunc.new( { |data|
+				network.setData( 42, [data[1]] );
+			},"/activitySensitive4" ),
 
 			OSCFunc.new( { |data|
 				network.setData( 3, [data[1]] );
@@ -91,6 +118,9 @@ MBEyeCon {
 			OSCFunc.new( { |data|
 				network.setData( 16, [data[1]] );
 			},"/height2"),
+			OSCFunc.new( { |data|
+				network.setData( 26, [data[1]] );
+			},"/heightAll"),
 
 			OSCFunc.new( { |data|
 				network.setData( 7, [data[1]] );

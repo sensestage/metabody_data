@@ -1,0 +1,7 @@
+// processing:
+
+needs libraries:
+
+PeasyCam
+Shapes3d
+oscP5

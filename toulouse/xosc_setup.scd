@@ -18,6 +18,14 @@
 ~eyecon.makeGui;
 
 
+(
+OSCdef( \activityPost, { |msg|
+	msg.postln;
+}, "/activityNormalAll" );
+);
+
+OSCdef( \activityPost ).free;
+
 /// ---- testing -----
 
 OSCdef( \showInfoClient, { |msg| msg.postln; }, "/XOSC/info/client" );
@@ -35,6 +43,7 @@ OSCdef( \minibeePost, { |msg|
 );
 
 OSCdef( \minibeePost ).free;
+
 // -------------------
 
 s.boot;

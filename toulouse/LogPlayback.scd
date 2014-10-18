@@ -4,17 +4,12 @@
 (
 ~recordings = ( "".resolveRelative +/+ "video/logs/*/*.txt" ).pathMatch.sort;
 ~videos = ( "".resolveRelative +/+ "video/*.avi" ).pathMatch.sort;
-);
 
-
-(
 // connection to video play:
 ~videoPlay = NetAddr.new( "127.0.0.1", 57152 );
 OSCdef( \videoplay_started, { |msg| msg.postln }, "/videoplay/started", ~videoPlay );
 OSCdef( \videoplay_quit, { |msg| msg.postln }, "/videoplay/quit", ~videoPlay );
-);
 
-(
 // set up video play osc to send data for the frame number
 OSCdef( \videorec_frame, { |msg| ~videoPlay.sendMsg( "/videoplay/frame", msg[1].asInteger ); }, "/videorec/frame" );
 );
@@ -24,17 +19,14 @@ OSCdef( \videorec_frame, { |msg| ~videoPlay.sendMsg( "/videoplay/frame", msg[1].
 
 // open the file log:
 // change index for different video:
-("cd /home/nescivi/git/steim/metabody/toulouse/video/; videoplayosc" + ~videos[2] + NetAddr.langPort ).runInTerminal;
+("cd" + "".resolveRelative +/+ "video; videoplayosc" + ~videos[0] + NetAddr.langPort ).runInTerminal;
 // change index for different recording:
-~oscplayer = OSCFileLogPlayer( ~recordings[2], NetAddr.new( "127.0.0.1", NetAddr.langPort ) );
+~oscplayer = OSCFileLogPlayer( ~recordings[0], NetAddr.new( "127.0.0.1", NetAddr.langPort ) );
 
 
-/// fill in the processing port where you want to have the data:
-~oscforwarder = OSCForwarder.new( NetAddr.new( "127.0.0.1", 8000 ) );
-// stop forwarding
-~oscforwarder.stop;
-// start forwarding againg
-~oscforwarder.start;
+~processing = NetAddr.new( "127.0.0.1", 12000 );
+OSCdef( \minibee2processing, { |msg| ~processing.sendMsg( *msg ) }, "/minibee/data" );
+OSCdef( \minibee2processing ).free;
 
 // playback controls:
 ~oscplayer.play;
@@ -51,6 +43,14 @@ OSCdef( \videorec_frame, { |msg| ~videoPlay.sendMsg( "/videoplay/frame", msg[1].
 ~oscplayer.close;
 
 OSCFunc.trace( false );
+
+
+/// fill in the processing port where you want to have the data:
+~oscforwarder = OSCForwarder.new( NetAddr.new( "127.0.0.1", 8000 ) );
+// stop forwarding
+~oscforwarder.stop;
+// start forwarding againg
+~oscforwarder.start;
 
 // order:
 
@@ -69,3 +69,16 @@ OSCFunc.trace( false );
 11 : Marianne - blahblahblah
 12 : Marianne - contracted - extended
 13 : Marianne - fall
+
+
+14: duet 1 - camera IDS
+15: duet 2 - camera IDS
+16: duet 3 - camera IDS
+17: duet 4 - camera IDS
+18: duet 5 - camera IDS
+19: duet 6 - camera JM
+14: duet 6 - camera IDS
+15: duet 7 - camera IDS
+16: reference movements for orientations - camera IDS
+17: duet 7 - camera IDS
+

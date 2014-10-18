@@ -1,7 +1,7 @@
 //x = x ? SWDataNetwork.new.createHost;
 //x.makeGui;
 
-("cd /home/nescivi/git/steim/metabody/toulouse/video/; videorecosc 1 Toulouse" ++ Date.localtime.stamp + NetAddr.langPort ).runInTerminal;
+("cd /home/nescivi/git/steim/metabody/toulouse/video/; videorecosc 1 Toulouse2" ++ Date.localtime.stamp + NetAddr.langPort ).runInTerminal;
 
 (
 // initialisation:
@@ -12,7 +12,6 @@ OSCdef( \videorec_record_off, { |msg| msg.postln }, "/videorec/record/stop", ~vi
 OSCdef( \videorec_record_on, { |msg| msg.postln; }, "/videorec/record/start", ~videoRec );
 // OSCdef( \videorec_frame, { |msg| msg.postln; }, "/videorec/frame", ~videoRec );
 );
-
 
 ~timelog = OSCFileLog.new( "".resolveRelative +/+ "video/logs/situations" ); ~videoRec.sendMsg( "/videorec/record", 1 );
 

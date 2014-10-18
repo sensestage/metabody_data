@@ -23,5 +23,11 @@ https://github.com/ModalityTeam/Modality-toolkit/archive/master.zip
 
 // And copy the folder Modality to your Extensions folder.
 
-// You can open the extensions folder with this little line of SC code
+// You can open the user support folder with this little line of SC code
 Platform.userAppSupportDir.openOS;
+
+Create a folder "Extensions" in here.
+
+// also place or link the files in the folder:
+("".resolveRelative +/+ "SuperCollider/Classes").openOS;
+// to the Extensions folder of SuperCollider

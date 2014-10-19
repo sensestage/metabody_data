@@ -19,9 +19,9 @@ OSCdef( \videorec_frame, { |msg| ~videoPlay.sendMsg( "/videoplay/frame", msg[1].
 
 // open the file log:
 // change index for different video:
-("cd" + "".resolveRelative +/+ "video; videoplayosc" + ~videos[0] + NetAddr.langPort ).runInTerminal;
+("cd" + "".resolveRelative +/+ "video; videoplayosc" + ~videos[24] + NetAddr.langPort ).runInTerminal;
 // change index for different recording:
-~oscplayer = OSCFileLogPlayer( ~recordings[0], NetAddr.new( "127.0.0.1", NetAddr.langPort ) );
+~oscplayer = OSCFileLogPlayer( ~recordings[24], NetAddr.new( "127.0.0.1", NetAddr.langPort ) );
 
 
 ~processing = NetAddr.new( "127.0.0.1", 12000 );
@@ -46,7 +46,7 @@ OSCFunc.trace( false );
 
 
 /// fill in the processing port where you want to have the data:
-~oscforwarder = OSCForwarder.new( NetAddr.new( "127.0.0.1", 8000 ) );
+~oscforwarder = OSCForwarder.new( NetAddr.new( "127.0.0.1", 12001 ) );
 // stop forwarding
 ~oscforwarder.stop;
 // start forwarding againg
@@ -54,6 +54,7 @@ OSCFunc.trace( false );
 
 // order:
 
+// frontal camera
 0 : Mario - heaviness
 1 : Mario - run up
 2 : Mario - run up
@@ -70,7 +71,7 @@ OSCFunc.trace( false );
 12 : Marianne - contracted - extended
 13 : Marianne - fall
 
-
+// overhead camera
 14: duet 1 - camera IDS
 15: duet 2 - camera IDS
 16: duet 3 - camera IDS
@@ -82,3 +83,5 @@ OSCFunc.trace( false );
 16: reference movements for orientations - camera IDS
 17: duet 7 - camera IDS
 
+// no camera data
+18: pressure

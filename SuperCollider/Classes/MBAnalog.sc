@@ -14,7 +14,7 @@ MBAnalog {
 	}
 
 	initSpecs{
-		inputSpec = [ 0.46, 0.54 ].asSpec;
+		inputSpec = [ 0.0, 1.0 ].asSpec;
 		activitySpec = [ 0.0001, 0.15, \exponential ].asSpec;
 	}
 

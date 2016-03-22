@@ -10,5 +10,7 @@ For installation of the SuperCollider dependencies, see SuperCollider_Installati
 For installation of the Processing dependencies, see Processing_Installation.scd.
 
 ==============
-These tools were developed for STEIM (www.steim.org), for the METABODY project (www.metabody.eu).
+These tools were developed for [STEIM](www.steim.org), for the [METABODY project](www.metabody.eu).
 METABODY is a cultural project supported by the Culture Programme of the European Union.
+
+

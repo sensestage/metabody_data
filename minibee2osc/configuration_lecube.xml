@@ -29,6 +29,13 @@
     <minibee caps="7" configuration="1" id="10" libversion="7" name="" revision="D" serial="0013A200403BF27B">
     </minibee> 
 
+    
+    <minibee caps="7" configuration="1" id="11" libversion="7" name="" revision="D" serial="0013A20040C18150">
+    </minibee> 
+
+    <minibee caps="7" configuration="1" id="12" libversion="7" name="" revision="D" serial="0013A20040C1816C">
+    </minibee> 
+
 <!--
     <minibee caps="7" configuration="1" id="6" libversion="7" name="" revision="D" serial="0013a200403bf27b">
     </minibee> 

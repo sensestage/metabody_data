@@ -25,11 +25,11 @@ Ndef( \pulse, {
 );
 
 (
-Ndef( \pulse ).addSpec( \delay, [ 0.05,0.2, \exp ].asSpec );
-Ndef( \pulse ).addSpec( \decay, [ 0.1,1, \exp ].asSpec );
+Ndef( \pulse ).addSpec( \delay, [ 0.01,0.4, \exp ].asSpec );
+Ndef( \pulse ).addSpec( \decay, [ 0.1,2, \exp ].asSpec );
 
-Ndef( \pulse ).addSpec( \rate, [ 10,100, \exp ].asSpec );
-Ndef( \pulse ).addSpec( \dur, [ 0.2,0.05, \exp ].asSpec );
+Ndef( \pulse ).addSpec( \rate, [ 0.2,100, \exp ].asSpec );
+Ndef( \pulse ).addSpec( \dur, [ 1,0.05, \exp ].asSpec );
 
 Ndef( \pulse ).addSpec( \width, [ 0.1,0.9 ].asSpec );
 
@@ -40,15 +40,20 @@ Ndef( \pulse ).addSpec( \hfreq, [ 50, 200, \exp ].asSpec );
 Ndef( \pulse ).addSpec( \rq, [ 0.2, 0.03, \exp ].asSpec );
 Ndef( \pulse ).addSpec( \hrq, [ 0.01, 0.2, \exp ].asSpec );
 Ndef( \pulse ).addSpec( \pos, [ -1, 1 ].asSpec );
-Ndef( \pulse ).addSpec( \freq, [ 600, 100, \exp ].asSpec );
+Ndef( \pulse ).addSpec( \freq, [ 800, 100, \exp ].asSpec );
 Ndef( \pulse ).addSpec( \amp, [ 0.02, 0.3, \exp ].asSpec );
 Ndef( \pulse ).addSpec( \dfreq, [ 0.1, 40, \exp ].asSpec );
 );
 
-
 Ndef( \pulse ).fadeTime_( 2 );
-Ndef( \pulse ).play( vol: 0.1 );
-b.sound = Ndef( \pulse );
+Ndef( \pulse ).play( 0, vol: 0.025 );
+
+
+c.resetMap;
+c.sound = Ndef( \pulse );
+
+Ndef( \pulse ).stop
+d.resetMap
 
 /// kmap
 a.kmap.removePar( \x, \freq );
@@ -56,33 +61,33 @@ a.kmap.removePar( \y, \freq );
 a.kmap.removePar( \z, \freq );
 
 
-b.addPar( \x, \rate );
-b.addPar( \y, \ffreq );
+c.addPar( \x, \rate );
+c.addPar( \y, \ffreq );
 a.kmap.removePar( \y, \ffreq );
 a.kmap.removePar( \z, \fmfreq );
-b.addPar( \z, \fmfreq );
+c.addPar( \z, \fmfreq );
 
-b.addPar( \mx, \hfreq );
-b.addPar( \my, \width );
-b.addPar( \mz, \dur );
-b.addPar( \mz, \fmmul );
+c.addPar( \mx, \hfreq );
+c.addPar( \my, \width );
+c.addPar( \mz, \dur );
+c.addPar( \mz, \fmmul );
 
-b.addPar( \fix, \freq );
-b.addPar( \fiy, \freq );
-b.addPar( \fiz, \freq );
+c.addPar( \fix, \freq );
+c.addPar( \fiy, \freq );
+c.addPar( \fiz, \freq );
 
-b.addPar( \fox, \ffreq );
-b.addPar( \foy, \ffreq );
-b.addPar( \foz, \ffreq );
+c.addPar( \fox, \ffreq );
+c.addPar( \foy, \ffreq );
+c.addPar( \foz, \ffreq );
 
-b.addPar( \dx, \decay );
-b.addPar( \dy, \decay );
-b.addPar( \dy, \delay );
-b.addPar( \dz, \delay );
+c.addPar( \dx, \decay );
+c.addPar( \dy, \decay );
+c.addPar( \dy, \delay );
+c.addPar( \dz, \delay );
 
-b.addPar( \dx, \amp );
-b.addPar( \dy, \amp );
-b.addPar( \dz, \amp );
+c.addPar( \dx, \amp );
+c.addPar( \dy, \amp );
+c.addPar( \dz, \amp );
 
 b.addPar( \dz, \hfreq );
 

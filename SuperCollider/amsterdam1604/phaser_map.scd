@@ -47,42 +47,38 @@ Ndef( \phasor ).play( 4, vol: 0.025);
 Ndef( \phasor ).fadeTime_( 2 );
 
 a.resetMap;
-a.removeMapping;
-a.accelero = ~accs[2];
-
-c.sound = Ndef( \phasor );
+a.sound = Ndef( \phasor );
 
 Ndef( \pulse ).stop(2);
 
-c.addPar( \x, \pos );
-c.addPar( \y, \rate );
-c.addPar( \z, \fmfreq );
+a.addPar( \x, \pos );
+a.addPar( \y, \rate );
+a.addPar( \z, \fmfreq );
 
-c.addPar( \x, \ffreq );
-c.addPar( \y, \freq );
-c.addPar( \z, \hfreq );
+a.addPar( \x, \ffreq );
+a.addPar( \y, \freq );
+a.addPar( \z, \hfreq );
 
-c.addPar( \dy, \fmmul );
-c.addPar( \dy, \rq );
+a.addPar( \dy, \fmmul );
+a.addPar( \dy, \rq );
 
-c.addPar( \dx, \hrq );
-c.addPar( \dx, \dur );
-c.addPar( \dx, \delay );
+a.addPar( \dx, \hrq );
+a.addPar( \dx, \dur );
+a.addPar( \dx, \delay );
 
-c.addPar( \dz, \rate );
-c.addPar( \dz, \decay );
+a.addPar( \dz, \rate );
+a.addPar( \dz, \decay );
 
-c.addPar( \dy, \dfreq );
-c.addPar( \dz, \dfreq );
-c.addPar( \dx, \dfreq );
+a.addPar( \dy, \dfreq );
+a.addPar( \dz, \dfreq );
+a.addPar( \dx, \dfreq );
 
-c.addPar( \dx, \amp );
-c.addPar( \dy, \amp );
-c.addPar( \dz, \amp );
+a.addPar( \dx, \amp );
+a.addPar( \dy, \amp );
+a.addPar( \dz, \amp );
 
 a.kmap.addRound( \y, 0.1, \freq );
 a.kmap.addRound( \x, 0.1, \ffreq );
 a.kmap.addRound( \z, 0.1, \hfreq );
 
 Ndef( \phasor ).stop(2);
-

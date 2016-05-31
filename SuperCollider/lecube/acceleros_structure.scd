@@ -8,13 +8,13 @@
 
 
 
-Ndef( \pulseMotorLow, { RLPF.ar( LFPulse.ar( \freq.kr(500).lag(0.1) * [1,2,3,4], 0, Phasor.ar(0, \rate.kr(1), \start.kr(0), \end.kr(1)), 0.5, -0.25), \ffreq.kr(1000).lag(0.1) * [1,1,0.5,0.5], \rq.kr(0.1), [1,3/4,3/5,1/2] ).sum * \amp.kr(1) } );
+Ndef( \pulseMotorLow, { RLPF.ar( LFPulse.ar( \freq.kr(230).lag(0.1) * [1,2,3,4], 0, Phasor.ar(0, \rate.kr(1), \start.kr(0), \end.kr(1)), 0.5, -0.25), \ffreq.kr(240).lag(0.1) * [1,1,0.5,0.5], \rq.kr(0.1), [1,3/4,3/5,1/2] ).sum * \amp.kr(0.2) } );
 
-Ndef( \pulseMotorLow ).play;
+Ndef( \pulseMotorLow ).play(5);
 
-Ndef( \pulseMotorLow2, { RLPF.ar( LFPulse.ar( \freq.kr(500).lag(0.1) * [1,2,3,4], 0, Phasor.ar(0, \rate.kr(1), \start.kr(0), \end.kr(1)), 0.5, -0.25), \ffreq.kr(1000).lag(0.1) * [1,1,0.5,0.5], \rq.kr(0.1), [1,3/4,3/5,1/2] ).sum * \amp.kr(1) } );
+Ndef( \pulseMotorLow2, { RLPF.ar( LFPulse.ar( \freq.kr(150).lag(0.1) * [1,2,3,4], 0, Phasor.ar(0, \rate.kr(1), \start.kr(0), \end.kr(1)), 0.5, -0.25), \ffreq.kr(250).lag(0.1) * [1,1,0.5,0.5], \rq.kr(0.1), [1,3/4,3/5,1/2] ).sum * \amp.kr(0.2) } );
 
-Ndef( \pulseMotorLow2 ).play(1);
+Ndef( \pulseMotorLow2 ).play(0);
 
 
 

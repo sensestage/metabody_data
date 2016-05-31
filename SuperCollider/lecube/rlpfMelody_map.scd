@@ -11,18 +11,21 @@ Ndef( \rlpfMelody, {
 
 Ndef( \rlpfMelody ).addSpec( \lffreq, [ 10, 100, \exponential ] );
 Ndef( \rlpfMelody ).addSpec( \width, [ 0.1, 0.5 ] );
-Ndef( \rlpfMelody ).addSpec( \freq, [ 7000, 12000, \exponential ] );
+Ndef( \rlpfMelody ).addSpec( \freq, [ 5000, 12000, \exponential ] );
 Ndef( \rlpfMelody ).addSpec( \amp, [ 0.1, 1, \exponential ] );
-Ndef( \rlpfMelody ).addSpec( \rq, [ 0.1, 0.05, \exponential ] );
+Ndef( \rlpfMelody ).addSpec( \rq, [ 0.1, 0.015, \exponential ] );
 Ndef( \rlpfMelody ).addSpec( \trig, [ 0, 1.0, \linear ] );
 Ndef( \rlpfMelody ).addSpec( \trigger, [ 0, 1, \linear ] );
-Ndef( \rlpfMelody ).addSpec( \rate, [ 1, 20, \exponential ] );
-Ndef( \rlpfMelody ).addSpec( \dur, [ 0.04, 1, \exponential ] );
+Ndef( \rlpfMelody ).addSpec( \rate, [ 1, 30, \exponential ] );
+Ndef( \rlpfMelody ).addSpec( \dur, [ 0.02, 1, \exponential ] );
 );
 
 
+Ndef( \rlpfMelody ).play( 4, vol: 0.2 );
+
+
+c.resetMap
 c.sound = Ndef( \rlpfMelody );
-Ndef( \rlpfMelody ).play( vol: 0.2 );
 
 c.addPar( \x, \lffreq );
 c.addPar( \y, \freq );

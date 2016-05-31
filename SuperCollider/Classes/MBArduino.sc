@@ -43,9 +43,11 @@ MBArduino : Arduino
 			(
 			[ 92, type.ascii ] ++
 			( vals.collect{ |it| it.asInteger }
-				.replaceAllSuchThat( { |it| it == 10 }, [92,10])
-				.replaceAllSuchThat( { |it| it == 13 }, [92,13])
-				.replaceAllSuchThat( { |it| it == 92 }, [92,92])
+					.replaceAllSuchThat( { |it| it == 10 }, [92,10])
+					.replaceAllSuchThat( { |it| it == 13 }, [92,13])
+					.replaceAllSuchThat( { |it| it == 92 }, [92,92])
+					.replaceAllSuchThat( { |it| it == 17 }, [92,17])
+					.replaceAllSuchThat( { |it| it == 19 }, [92,19])
 				.flatten)
 			++ [ 10 ]
 			)
@@ -107,8 +109,9 @@ MBArduinoParser : ArduinoParser
 		if ( record, { logfile.write( byte.asString; ); logfile.write( " " ); });
 		if ( verbose > 2, { [state,byte].postln; } );
 		if ( state == \escape ){ // escape is set
-			if ( (byte === 10) or: ( byte === 13 ) or: (byte === 92) ){
-				if ( verbose > 0, { "escaping 10 or 13 or 92".postln; } );
+			// if ( (byte === 10) or: ( byte === 13 ) or: ( byte === 17 )or: ( byte === 19 ) or: (byte === 92) ){
+			if ( [10,13,17,19,92].includes(byte) ){
+				if ( verbose > 0, { "escaping 10 or 13 or 17 or 19 or 92".postln; } );
 				msgArgStream << byte;
 				this.finishArg;
 				state = nil;

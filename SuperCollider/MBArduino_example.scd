@@ -1,4 +1,4 @@
-m = MBArduino.new( "/dev/ttyACM3", 115200 );
+m = MBArduino.new( "/dev/ttyACM3", 57600 );
 
 (
 m.action = { |type,msg|
@@ -6,6 +6,12 @@ m.action = { |type,msg|
 };
 );
 
+// verbosity:
+
+m.parser.verbose = 0;
+m.parser.verbose = 2;
+
+m.close;
 // verbosity:
 
 m.parser.verbose = 0;
